@@ -1,823 +1,826 @@
 <!DOCTYPE html>
 <html lang="ka">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DentAura 24 | სტომატოლოგიური კლინიკა</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Toothix | სტომატოლოგიური ცენტრი</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ════════════════════════════════════════
+   VARIABLES & RESET
+════════════════════════════════════════ */
+:root{
+  --primary:#1AABB0;
+  --primary-dk:#158a8e;
+  --primary-lt:#e8f8f8;
+  --accent:#2bcccc;
+  --dark:#1a2b35;
+  --text:#444c5a;
+  --muted:#7a8898;
+  --light:#f5f9fa;
+  --white:#ffffff;
+  --border:#dde8ea;
+  --radius:12px;
+  --shadow:0 4px 24px rgba(26,171,176,.13);
+  --tr:.3s cubic-bezier(.4,0,.2,1);
+  --nav-h:68px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',system-ui,sans-serif;color:var(--text);background:var(--white);font-size:15px;line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{display:block;max-width:100%}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#f0f0f0}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=BPG+Nino+Mtavruli&display=swap" rel="stylesheet"/>
-  <!-- Georgian-friendly system font fallback -->
+/* ════════════════════════════════════════
+   UTILITIES
+════════════════════════════════════════ */
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(1rem,5%,3rem)}
+.tag{display:inline-block;color:var(--primary);font-weight:700;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.5rem}
+.section-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.55rem,3.5vw,2.6rem);font-weight:700;color:var(--dark);line-height:1.25;margin-bottom:.8rem}
+.section-title span{color:var(--primary)}
+.section-sub{color:var(--muted);max-width:560px;font-size:.93rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem 1.7rem;border-radius:50px;font-size:.88rem;font-weight:700;font-family:inherit;cursor:pointer;transition:var(--tr);border:none;white-space:nowrap}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 4px 18px rgba(26,171,176,.35)}
+.btn-primary:hover{background:var(--primary-dk);transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,171,176,.45)}
+.btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary)}
+.btn-outline:hover{background:var(--primary);color:#fff}
+.btn-white{background:#fff;color:var(--primary);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.btn-white:hover{background:var(--primary);color:#fff;transform:translateY(-2px)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
 
-  <style>
-    /* ─── CSS VARIABLES ─── */
-    :root {
-      --bg:        #0b0f14;
-      --bg2:       #111720;
-      --bg3:       #161d27;
-      --gold:      #c9a96e;
-      --gold-lt:   #e8d0a0;
-      --teal:      #3ecfc4;
-      --teal-dk:   #259f96;
-      --white:     #f0ede8;
-      --muted:     #7a8693;
-      --border:    rgba(201,169,110,.18);
-      --radius:    14px;
-      --transition: .35s cubic-bezier(.4,0,.2,1);
-    }
+/* ════════════════════════════════════════
+   NAVBAR
+════════════════════════════════════════ */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);box-shadow:0 2px 20px rgba(0,0,0,.07)}
+.nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;height:var(--nav-h);gap:1.5rem;padding:0 clamp(1rem,5%,3rem)}
+.nav-logo{display:flex;align-items:center;gap:.55rem;font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;font-weight:700;color:var(--dark);white-space:nowrap;flex-shrink:0}
+.logo-icon{width:34px;height:34px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-icon svg{width:18px;height:18px;fill:#fff}
+.nav-links{display:flex;gap:1.4rem;flex:1;justify-content:center}
+.nav-links a{font-size:.83rem;font-weight:600;color:var(--text);transition:color var(--tr);position:relative;padding:.2rem 0}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--primary);transition:width var(--tr);border-radius:2px}
+.nav-links a:hover{color:var(--primary)}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:.7rem;flex-shrink:0}
+.lang-sw{display:flex;border:1.5px solid var(--border);border-radius:20px;overflow:hidden}
+.lang-sw button{padding:.28rem .7rem;font-size:.74rem;font-weight:700;background:transparent;border:none;cursor:pointer;font-family:inherit;color:var(--muted);transition:var(--tr)}
+.lang-sw button.on{background:var(--primary);color:#fff}
 
-    /* ─── RESET ─── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: 'BPG Nino Mtavruli', 'Sylfaen', 'FiraGO', Georgia, serif;
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    img { display: block; max-width: 100%; }
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;cursor:pointer;background:none;border:none;padding:4px;border-radius:8px;transition:var(--tr)}
+.hamburger span{display:block;height:2.5px;border-radius:2px;background:var(--dark);transition:var(--tr)}
+.hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
 
-    /* ─── NOISE OVERLAY ─── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
-      background-size: 200px;
-      pointer-events: none;
-      z-index: 9999;
-    }
+/* Mobile drawer */
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:#fff;box-shadow:0 8px 32px rgba(0,0,0,.1);padding:1.2rem clamp(1rem,5%,3rem) 1.8rem;z-index:299;transform:translateY(-8px);opacity:0;transition:transform var(--tr),opacity var(--tr);pointer-events:none}
+.mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-menu nav ul{display:flex;flex-direction:column;gap:.15rem}
+.mobile-menu nav ul a{display:block;padding:.65rem 1rem;font-size:.95rem;font-weight:600;color:var(--text);border-radius:8px;transition:var(--tr)}
+.mobile-menu nav ul a:hover{background:var(--primary-lt);color:var(--primary)}
+.mobile-menu-footer{display:flex;align-items:center;gap:.8rem;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--border);flex-wrap:wrap}
 
-    /* ─── SCROLLBAR ─── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+#hero{padding:calc(var(--nav-h) + clamp(2rem,5vw,4rem)) clamp(1rem,5%,3rem) clamp(2.5rem,6vw,5rem);background:linear-gradient(160deg,#f0fbfb 0%,#e6f6f7 55%,#fff 100%);min-height:90vh;display:flex;align-items:center}
+.hero-inner{max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.9rem,4.5vw,3.6rem);font-weight:700;color:var(--dark);line-height:1.15;margin:.5rem 0 1.2rem}
+.hero-title .hl{color:var(--primary)}
+.hero-desc{color:var(--muted);font-size:.95rem;max-width:440px;margin-bottom:2rem;line-height:1.8}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+.hero-play{width:44px;height:44px;border-radius:50%;border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--tr);background:transparent;flex-shrink:0}
+.hero-play:hover{background:var(--primary)}
+.hero-play svg{fill:var(--primary);width:14px;transition:fill var(--tr)}
+.hero-play:hover svg{fill:#fff}
+.hero-img{position:relative}
+.hero-img-box{border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(26,171,176,.18);aspect-ratio:1/.85;background:linear-gradient(135deg,var(--primary-lt),#cff1f1);display:flex;align-items:center;justify-content:center}
+.hero-float-badge{position:absolute;bottom:1.5rem;left:-1.5rem;background:#fff;border-radius:var(--radius);padding:.85rem 1.1rem;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:.7rem}
+.hfb-icon{width:38px;height:38px;border-radius:50%;background:var(--primary-lt);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.hfb-num{font-size:1.25rem;font-weight:800;color:var(--dark);line-height:1}
+.hfb-lbl{font-size:.68rem;color:var(--muted)}
 
-    /* ─── NAVBAR ─── */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.1rem 5%;
-      background: rgba(11,15,20,.82);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-      transition: var(--transition);
-    }
-    .nav-logo {
-      display: flex; align-items: center; gap: .6rem;
-    }
-    .nav-logo-icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--gold), var(--teal));
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; font-style: italic; color: var(--bg); font-weight: 700;
-    }
-    .nav-logo-text { font-size: 1.25rem; font-weight: 600; letter-spacing: .08em; color: var(--gold-lt); }
-    .nav-logo-text span { color: var(--teal); }
+/* ════════════════════════════════════════
+   WHY CHOOSE
+════════════════════════════════════════ */
+#why{padding:clamp(3rem,8vw,5rem) clamp(1rem,5%,3rem);background:#fff}
+.why-header{text-align:center;max-width:600px;margin:0 auto clamp(2rem,5vw,3.5rem)}
+.why-header .section-sub{margin:.6rem auto 0}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;max-width:1160px;margin:0 auto}
+.why-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.8rem 1.4rem;text-align:center;transition:var(--tr);position:relative;overflow:hidden}
+.why-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform var(--tr)}
+.why-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--primary)}
+.why-card:hover::before{transform:scaleX(1)}
+.why-icon{width:56px;height:56px;border-radius:14px;background:var(--primary-lt);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;transition:var(--tr)}
+.why-card:hover .why-icon{background:var(--primary);filter:brightness(0) invert(1)}
+.why-name{font-size:.93rem;font-weight:700;color:var(--dark);margin-bottom:.4rem}
+.why-desc{font-size:.82rem;color:var(--muted);line-height:1.7}
 
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--muted); transition: color var(--transition);
-    }
-    .nav-links a:hover { color: var(--gold); }
+/* ════════════════════════════════════════
+   ABOUT
+════════════════════════════════════════ */
+#about{padding:clamp(3rem,8vw,5rem) clamp(1rem,5%,3rem);background:var(--light)}
+.about-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center}
+.about-img-wrap{position:relative}
+.about-main-img{border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(26,171,176,.15);background:linear-gradient(135deg,#cff1f1,var(--primary-lt));aspect-ratio:4/5;display:flex;align-items:center;justify-content:center}
+.about-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.2rem}
+.about-stat{background:#fff;border-radius:var(--radius);padding:1.1rem;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.about-stat-num{font-size:1.55rem;font-weight:800;color:var(--primary);line-height:1}
+.about-stat-lbl{font-size:.7rem;color:var(--muted);margin-top:.2rem}
+.about-content .section-title{margin-bottom:1rem}
+.about-content p{color:var(--muted);font-size:.9rem;margin-bottom:1rem}
+.about-two{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.about-card-sm{background:#fff;border-radius:var(--radius);padding:1.2rem;border:1px solid var(--border)}
+.about-card-sm h4{font-size:.88rem;font-weight:700;color:var(--dark);margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+.about-card-sm p{font-size:.8rem;color:var(--muted)}
 
-    .nav-right { display: flex; align-items: center; gap: 1rem; }
+/* ════════════════════════════════════════
+   BANNER CTA
+════════════════════════════════════════ */
+#banner-cta{padding:clamp(2.5rem,6vw,4rem) clamp(1rem,5%,3rem);background:linear-gradient(120deg,var(--primary) 0%,#0d8f94 100%);position:relative;overflow:hidden}
+#banner-cta::before{content:'';position:absolute;right:-100px;top:-100px;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none}
+#banner-cta::after{content:'';position:absolute;left:-60px;bottom:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.banner-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.banner-text h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.5rem,3vw,2.3rem);color:#fff;line-height:1.2;margin-bottom:.3rem}
+.banner-text h2 span{display:block;font-size:.8em;font-weight:400}
+.banner-text p{color:rgba(255,255,255,.75);font-size:.85rem}
+.banner-emoji{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1;flex-shrink:0}
 
-    /* Language toggle */
-    .lang-toggle {
-      display: flex; border: 1px solid var(--border); border-radius: 30px; overflow: hidden;
-    }
-    .lang-btn {
-      padding: .3rem .75rem; font-size: .75rem; letter-spacing: .08em;
-      background: transparent; color: var(--muted); cursor: pointer;
-      border: none; transition: var(--transition); font-family: inherit;
-    }
-    .lang-btn.active { background: var(--gold); color: var(--bg); font-weight: 600; }
+/* ════════════════════════════════════════
+   SERVICES
+════════════════════════════════════════ */
+#services{padding:clamp(3rem,8vw,5rem) clamp(1rem,5%,3rem);background:#fff}
+.services-top{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+.services-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.svc-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.8rem 1.4rem;transition:var(--tr)}
+.svc-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--primary)}
+.svc-icon{font-size:1.9rem;margin-bottom:1rem}
+.svc-name{font-size:.93rem;font-weight:700;color:var(--dark);margin-bottom:.5rem}
+.svc-desc{font-size:.82rem;color:var(--muted);margin-bottom:1.1rem;line-height:1.7}
+.svc-link{font-size:.8rem;font-weight:700;color:var(--primary);display:inline-flex;align-items:center;gap:.3rem;transition:gap var(--tr)}
+.svc-link:hover{gap:.6rem}
 
-    /* Book button (nav) */
-    .btn-book-sm {
-      padding: .45rem 1.2rem;
-      background: linear-gradient(135deg, var(--gold), #a07a42);
-      color: var(--bg); border: none; border-radius: 30px;
-      font-size: .8rem; letter-spacing: .1em; font-weight: 700;
-      cursor: pointer; font-family: inherit;
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .btn-book-sm:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(201,169,110,.4);
-    }
+/* ════════════════════════════════════════
+   BOOKING FORM
+════════════════════════════════════════ */
+#booking{padding:clamp(3rem,8vw,5rem) clamp(1rem,5%,3rem);background:var(--light)}
+.booking-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:3.5rem;align-items:center}
+.booking-img{border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#1a2b35,#253d4a);aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem;position:relative;align-items:center}
+.booking-img-emoji{font-size:clamp(3rem,6vw,5rem);position:relative;z-index:1;margin-bottom:1rem}
+.booking-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(15,30,38,.88))}
+.booking-img-text{position:relative;z-index:1;color:#fff}
+.booking-img-text h3{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.2rem,2.5vw,1.6rem);line-height:1.25;margin-bottom:.5rem}
+.booking-img-text p{font-size:.82rem;color:rgba(255,255,255,.7);margin-bottom:1.2rem}
+.booking-form{background:#fff;border-radius:20px;padding:clamp(1.4rem,4vw,2.2rem);box-shadow:0 8px 40px rgba(0,0,0,.07)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{margin-bottom:.9rem}
+.form-group label{display:block;font-size:.74rem;font-weight:700;color:var(--dark);margin-bottom:.35rem;letter-spacing:.05em}
+.form-group label span{color:var(--primary)}
+.form-control{width:100%;background:#f6f9fb;border:1.5px solid var(--border);border-radius:8px;padding:.62rem .9rem;font-family:inherit;font-size:.88rem;color:var(--dark);outline:none;transition:border-color var(--tr)}
+.form-control:focus{border-color:var(--primary);background:#fff}
+.form-control::placeholder{color:#b0bac5}
+textarea.form-control{resize:vertical;min-height:75px}
 
-    /* ─── HERO ─── */
-    #hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 8rem 5% 4rem;
-      position: relative; overflow: hidden;
-      text-align: center;
-    }
-    /* Decorative gradient orbs */
-    #hero::before {
-      content: '';
-      position: absolute; width: 700px; height: 700px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(62,207,196,.08) 0%, transparent 70%);
-      top: -200px; right: -200px; pointer-events: none;
-    }
-    #hero::after {
-      content: '';
-      position: absolute; width: 500px; height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,169,110,.07) 0%, transparent 70%);
-      bottom: 0; left: -150px; pointer-events: none;
-    }
+/* ════════════════════════════════════════
+   TESTIMONIALS
+════════════════════════════════════════ */
+#testimonials{padding:clamp(3rem,8vw,5rem) clamp(1rem,5%,3rem);background:var(--dark);position:relative;overflow:hidden}
+#testimonials::before{content:'';position:absolute;right:-150px;top:-150px;width:500px;height:500px;border-radius:50%;background:rgba(26,171,176,.07);pointer-events:none}
+.testimonials-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:.9fr 2fr;gap:4rem;align-items:center}
+.test-left .tag{color:var(--accent)}
+.test-left .section-title{color:#fff}
+.test-left .section-sub{color:rgba(255,255,255,.55)}
+.test-left .section-title span{color:var(--accent)}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.test-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:1.4rem;transition:var(--tr)}
+.test-card:hover{background:rgba(255,255,255,.1);transform:translateY(-4px)}
+.test-quote{font-size:1.6rem;color:var(--primary);line-height:1;margin-bottom:.6rem}
+.stars{color:#f7c948;font-size:.85rem;margin-bottom:.6rem;letter-spacing:.1em}
+.test-text{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:1rem}
+.test-author{display:flex;align-items:center;gap:.7rem}
+.test-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;color:#fff;flex-shrink:0}
+.test-name{font-size:.82rem;font-weight:700;color:#fff}
+.test-role{font-size:.72rem;color:rgba(255,255,255,.4)}
+.test-dots{display:flex;gap:.5rem;margin-top:1.5rem}
+.test-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)}
+.test-dot.on{background:var(--primary);width:24px;border-radius:4px}
 
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .35rem 1rem; border: 1px solid var(--teal);
-      border-radius: 30px; font-size: .75rem; letter-spacing: .15em;
-      color: var(--teal); margin-bottom: 1.8rem;
-      animation: fadeUp .8s ease both;
-    }
-    .badge-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--teal); animation: pulse 1.6s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { transform: scale(1); opacity: 1; }
-      50%      { transform: scale(1.6); opacity: .5; }
-    }
+/* ════════════════════════════════════════
+   BLOG
+════════════════════════════════════════ */
+#blog{padding:clamp(3rem,8vw,5rem) clamp(1rem,5%,3rem);background:#fff}
+.blog-header{max-width:1160px;margin:0 auto;text-align:center;margin-bottom:clamp(2rem,4vw,3rem)}
+.blog-header .section-sub{margin:.6rem auto 0}
+.blog-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem}
+.blog-card{border-radius:var(--radius);overflow:hidden;border:1.5px solid var(--border);transition:var(--tr)}
+.blog-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--primary)}
+.blog-thumb{aspect-ratio:16/9;background:linear-gradient(135deg,var(--primary-lt),#b8ecec);display:flex;align-items:center;justify-content:center;font-size:clamp(2rem,4vw,3rem);position:relative}
+.blog-cat{position:absolute;top:.8rem;left:.8rem;background:var(--primary);color:#fff;font-size:.68rem;font-weight:700;padding:.25rem .7rem;border-radius:20px;letter-spacing:.08em}
+.blog-body{padding:1.2rem}
+.blog-date{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.blog-title{font-size:.9rem;font-weight:700;color:var(--dark);line-height:1.4;margin-bottom:.7rem}
+.blog-link{font-size:.8rem;font-weight:700;color:var(--primary);display:inline-flex;align-items:center;gap:.3rem;transition:gap var(--tr)}
+.blog-link:hover{gap:.6rem}
 
-    .hero-title {
-      font-family: 'Cormorant Garamond', 'Sylfaen', Georgia, serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 300; line-height: 1.1;
-      color: var(--white);
-      animation: fadeUp .9s .15s ease both;
-    }
-    .hero-title em {
-      font-style: italic; color: var(--gold);
-      display: block; font-size: 1.15em;
-    }
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer{background:var(--dark);padding:clamp(2.5rem,6vw,4rem) clamp(1rem,5%,3rem) 0}
+.footer-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr;gap:clamp(1.5rem,3vw,3rem);padding-bottom:clamp(2rem,4vw,3rem);border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand p{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.8;max-width:240px;margin-top:.8rem}
+.footer-col h4{font-size:.8rem;font-weight:700;color:#fff;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.1rem}
+.footer-col ul li{margin-bottom:.5rem}
+.footer-col ul li a{font-size:.82rem;color:rgba(255,255,255,.45);transition:color var(--tr);display:flex;align-items:center;gap:.4rem}
+.footer-col ul li a::before{content:'›';color:var(--primary)}
+.footer-col ul li a:hover{color:var(--primary)}
+.footer-contact-item{display:flex;align-items:flex-start;gap:.7rem;margin-bottom:.8rem}
+.footer-contact-item .icon{font-size:.9rem;margin-top:.1rem;flex-shrink:0}
+.footer-contact-item p{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.5}
+.footer-contact-item strong{display:block;color:rgba(255,255,255,.7);font-size:.78rem}
+.footer-bottom{max-width:1160px;margin:0 auto;padding:1.4rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem}
+.footer-bottom p{font-size:.78rem;color:rgba(255,255,255,.3)}
+.social-links{display:flex;gap:.6rem}
+.social-link{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:rgba(255,255,255,.5);transition:var(--tr)}
+.social-link:hover{background:var(--primary);border-color:var(--primary);color:#fff}
 
-    .hero-sub {
-      max-width: 520px; margin: 1.5rem auto 0;
-      font-size: 1rem; color: var(--muted); line-height: 1.8;
-      animation: fadeUp 1s .3s ease both;
-    }
+/* ════════════════════════════════════════
+   MODAL
+════════════════════════════════════════ */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.55);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity var(--tr);padding:1rem}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:20px;padding:clamp(1.4rem,4vw,2.5rem);max-width:420px;width:100%;transform:translateY(16px);transition:transform var(--tr);position:relative;max-height:90vh;overflow-y:auto}
+.modal-overlay.open .modal{transform:none}
+.modal-close{position:absolute;top:.9rem;right:.9rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--muted);line-height:1;padding:.2rem .5rem}
+.modal h3{font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;color:var(--dark);margin-bottom:.35rem}
+.modal p.sub{font-size:.85rem;color:var(--muted);margin-bottom:1.4rem}
+.modal .btn-primary{width:100%;justify-content:center;margin-top:.4rem;padding:.8rem}
+.modal-note{text-align:center;font-size:.72rem;color:var(--muted);margin-top:.7rem}
 
-    .hero-cta {
-      margin-top: 2.8rem; display: flex;
-      gap: 1rem; justify-content: center; flex-wrap: wrap;
-      animation: fadeUp 1s .45s ease both;
-    }
+/* Floating button */
+.float-call{position:fixed;bottom:1.8rem;right:1.8rem;z-index:290;width:52px;height:52px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 6px 24px rgba(26,171,176,.4);cursor:pointer;transition:transform var(--tr);animation:floatPulse 2.8s ease-in-out infinite}
+.float-call:hover{transform:scale(1.1)!important;animation:none}
+@keyframes floatPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 
-    /* Primary book button */
-    .btn-book-main {
-      padding: 1rem 2.5rem;
-      background: linear-gradient(135deg, var(--gold) 0%, #a07a42 100%);
-      color: var(--bg); border: none; border-radius: 50px;
-      font-size: 1rem; font-weight: 700; letter-spacing: .08em;
-      cursor: pointer; font-family: inherit;
-      box-shadow: 0 6px 32px rgba(201,169,110,.35);
-      transition: transform var(--transition), box-shadow var(--transition);
-      position: relative; overflow: hidden;
-    }
-    .btn-book-main::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,.18), transparent);
-    }
-    .btn-book-main:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 44px rgba(201,169,110,.55);
-    }
+/* ════════════════════════════════════════
+   RESPONSIVE — TABLET ≤1024px
+════════════════════════════════════════ */
+@media(max-width:1024px){
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-inner{grid-template-columns:repeat(2,1fr)}
+}
 
-    .btn-outline {
-      padding: 1rem 2.2rem;
-      background: transparent;
-      color: var(--white); border: 1px solid var(--border);
-      border-radius: 50px; font-size: 1rem; font-weight: 400;
-      cursor: pointer; font-family: inherit;
-      transition: border-color var(--transition), color var(--transition), background var(--transition);
-    }
-    .btn-outline:hover { border-color: var(--teal); color: var(--teal); background: rgba(62,207,196,.06); }
+/* ════════════════════════════════════════
+   RESPONSIVE — SMALL TABLET ≤860px
+════════════════════════════════════════ */
+@media(max-width:860px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:block}
 
-    .hero-stats {
-      margin-top: 4rem;
-      display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;
-      animation: fadeUp 1s .6s ease both;
-    }
-    .stat { text-align: center; }
-    .stat-num {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 2.4rem; font-weight: 300; color: var(--gold);
-    }
-    .stat-label { font-size: .75rem; color: var(--muted); letter-spacing: .1em; margin-top: .2rem; }
+  .hero-inner{grid-template-columns:1fr;text-align:center;gap:2.5rem}
+  .hero-text{order:1}
+  .hero-img{order:2;max-width:420px;margin:0 auto}
+  .hero-desc{margin-left:auto;margin-right:auto}
+  .hero-btns{justify-content:center}
+  .hero-float-badge{left:50%;transform:translateX(-50%);bottom:-1rem;white-space:nowrap}
 
-    /* Scrolling ticker */
-    .ticker {
-      background: linear-gradient(90deg, var(--gold) 0%, var(--teal) 50%, var(--gold) 100%);
-      padding: .7rem 0; overflow: hidden; white-space: nowrap;
-    }
-    .ticker-track {
-      display: inline-block;
-      animation: ticker 22s linear infinite;
-    }
-    .ticker-track span {
-      font-size: .78rem; letter-spacing: .18em; color: var(--bg);
-      font-weight: 700; margin-right: 4rem;
-    }
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
+  .about-inner{grid-template-columns:1fr}
+  .about-img-wrap{max-width:440px;margin:0 auto}
 
-    /* ─── SECTION COMMON ─── */
-    section { padding: 6rem 5%; }
-    .section-label {
-      font-size: .72rem; letter-spacing: .25em; text-transform: uppercase;
-      color: var(--teal); margin-bottom: .8rem;
-    }
-    .section-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 300; color: var(--white); line-height: 1.2;
-    }
-    .section-title strong { color: var(--gold); font-weight: 600; }
-    .section-desc { color: var(--muted); max-width: 520px; margin-top: .8rem; }
+  .booking-inner{grid-template-columns:1fr}
+  .booking-img{max-width:440px;margin:0 auto;aspect-ratio:16/9;min-height:240px}
 
-    /* ─── SERVICES ─── */
-    #services { background: var(--bg2); }
-    .services-header { text-align: center; margin-bottom: 4rem; }
-    .services-header .section-desc { margin: .8rem auto 0; }
+  .testimonials-inner{grid-template-columns:1fr;gap:2.5rem}
+  .test-left{text-align:center}
+  .test-dots{justify-content:center}
+  .test-grid{grid-template-columns:repeat(3,1fr)}
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1.5rem; max-width: 1200px; margin: 0 auto;
-    }
-    .service-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem 1.8rem;
-      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-      position: relative; overflow: hidden;
-    }
-    .service-card::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--teal));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform var(--transition);
-    }
-    .service-card:hover { transform: translateY(-6px); border-color: rgba(201,169,110,.35); box-shadow: 0 20px 48px rgba(0,0,0,.4); }
-    .service-card:hover::before { transform: scaleX(1); }
+  .blog-grid{grid-template-columns:repeat(2,1fr)}
+}
 
-    .service-icon {
-      width: 52px; height: 52px; border-radius: 12px;
-      background: rgba(201,169,110,.1);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin-bottom: 1.2rem;
-    }
-    .service-name {
-      font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: .5rem;
-    }
-    .service-desc { font-size: .88rem; color: var(--muted); line-height: 1.7; }
-    .service-tag {
-      display: inline-block; margin-top: 1rem;
-      padding: .25rem .7rem; border-radius: 20px;
-      font-size: .7rem; letter-spacing: .1em;
-      background: rgba(62,207,196,.1); color: var(--teal);
-    }
-    .service-tag.gold { background: rgba(201,169,110,.12); color: var(--gold); }
+/* ════════════════════════════════════════
+   RESPONSIVE — MOBILE ≤600px
+════════════════════════════════════════ */
+@media(max-width:600px){
+  :root{--nav-h:60px}
 
-    /* ─── ABOUT ─── */
-    #about { background: var(--bg); }
-    .about-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-    }
-    .about-visual {
-      position: relative;
-    }
-    .about-img-box {
-      background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
-      border: 1px solid var(--border);
-      border-radius: 20px; aspect-ratio: 4/5; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    .about-img-box svg { opacity: .15; }
-    .about-badge-float {
-      position: absolute; bottom: -1.5rem; right: -1.5rem;
-      background: linear-gradient(135deg, var(--gold), #a07a42);
-      border-radius: 14px; padding: 1.2rem 1.5rem;
-      text-align: center; box-shadow: 0 12px 36px rgba(0,0,0,.5);
-    }
-    .about-badge-float .big { font-size: 2rem; font-weight: 700; color: var(--bg); line-height: 1; }
-    .about-badge-float .sm { font-size: .7rem; letter-spacing: .1em; color: var(--bg); opacity: .75; }
+  .nav-logo{font-size:1.1rem}
+  .lang-sw{margin-right:.2rem}
 
-    .about-content { padding-right: 1rem; }
-    .about-content .section-title { margin-bottom: 1.2rem; }
-    .about-content p { color: var(--muted); margin-bottom: 1rem; font-size: .95rem; }
+  #hero{min-height:auto}
+  .hero-float-badge{position:static;transform:none;margin:1.5rem auto 0;width:fit-content}
 
-    .about-features { margin-top: 1.8rem; display: flex; flex-direction: column; gap: .9rem; }
-    .about-feat {
-      display: flex; align-items: flex-start; gap: .9rem;
-    }
-    .feat-dot {
-      width: 22px; height: 22px; border-radius: 50%;
-      background: rgba(62,207,196,.15);
-      border: 1px solid var(--teal);
-      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-      font-size: .65rem; color: var(--teal); margin-top: .25rem;
-    }
-    .feat-text { font-size: .88rem; color: var(--muted); }
-    .feat-text strong { color: var(--white); display: block; }
+  .why-grid{grid-template-columns:1fr 1fr}
+  .services-grid{grid-template-columns:1fr 1fr}
 
-    /* ─── CONTACT ─── */
-    #contact { background: var(--bg2); }
-    .contact-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start;
-    }
-    .contact-info { }
-    .contact-item {
-      display: flex; gap: 1rem; align-items: flex-start;
-      margin-top: 2rem;
-    }
-    .contact-item-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: rgba(201,169,110,.1); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .contact-item-label { font-size: .72rem; letter-spacing: .12em; color: var(--teal); margin-bottom: .2rem; }
-    .contact-item-val { font-size: .95rem; color: var(--white); }
+  .about-two{grid-template-columns:1fr}
 
-    .contact-map {
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: var(--radius); height: 360px;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 1rem; color: var(--muted);
-    }
-    .contact-map span { font-size: 2.5rem; opacity: .3; }
-    .contact-map p { font-size: .82rem; letter-spacing: .1em; }
+  .banner-inner{flex-direction:column;text-align:center;align-items:center}
+  .banner-emoji{display:none}
 
-    /* ─── FOOTER ─── */
-    footer {
-      background: #070a0e;
-      border-top: 1px solid var(--border);
-      padding: 3rem 5%;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1.5rem;
-    }
-    .footer-logo { font-size: 1.1rem; color: var(--gold-lt); letter-spacing: .08em; }
-    .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { font-size: .8rem; color: var(--muted); transition: color var(--transition); }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-copy { font-size: .75rem; color: var(--muted); }
+  .form-row{grid-template-columns:1fr}
 
-    /* ─── FLOATING 24H PILL ─── */
-    .float-24 {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
-      background: linear-gradient(135deg, var(--teal-dk), var(--teal));
-      color: var(--bg); padding: .7rem 1.2rem;
-      border-radius: 50px; font-size: .82rem; font-weight: 700;
-      letter-spacing: .08em; box-shadow: 0 8px 28px rgba(62,207,196,.4);
-      display: flex; align-items: center; gap: .5rem;
-      animation: floatBounce 3s ease-in-out infinite;
-    }
-    .float-24-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--bg); animation: pulse 1.2s infinite;
-    }
-    @keyframes floatBounce {
-      0%,100% { transform: translateY(0); }
-      50%      { transform: translateY(-6px); }
-    }
+  .test-grid{grid-template-columns:1fr 1fr}
 
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+  .blog-grid{grid-template-columns:1fr}
 
-    /* Scroll reveal */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .social-links{justify-content:center}
 
-    /* ─── BOOKING MODAL ─── */
-    .modal-overlay {
-      position: fixed; inset: 0; z-index: 300;
-      background: rgba(0,0,0,.75); backdrop-filter: blur(6px);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: opacity var(--transition);
-    }
-    .modal-overlay.open { opacity: 1; pointer-events: all; }
-    .modal {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 20px; padding: 2.5rem; max-width: 440px; width: 90%;
-      transform: translateY(20px); transition: transform var(--transition);
-      position: relative;
-    }
-    .modal-overlay.open .modal { transform: none; }
-    .modal-close {
-      position: absolute; top: 1rem; right: 1rem;
-      background: none; border: none; color: var(--muted);
-      font-size: 1.4rem; cursor: pointer; line-height: 1;
-    }
-    .modal-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.8rem; font-weight: 300; color: var(--white);
-      margin-bottom: .5rem;
-    }
-    .modal-sub { font-size: .85rem; color: var(--muted); margin-bottom: 1.8rem; }
-    .modal-field {
-      margin-bottom: 1rem;
-    }
-    .modal-field label { display: block; font-size: .75rem; letter-spacing: .1em; color: var(--teal); margin-bottom: .4rem; }
-    .modal-field input, .modal-field select {
-      width: 100%; background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 8px; padding: .7rem 1rem;
-      color: var(--white); font-family: inherit; font-size: .9rem;
-      outline: none; transition: border-color var(--transition);
-    }
-    .modal-field input:focus, .modal-field select:focus { border-color: var(--gold); }
-    .modal-field select option { background: var(--bg3); }
-    .modal-submit {
-      width: 100%; margin-top: 1.2rem;
-      padding: .9rem; background: linear-gradient(135deg, var(--gold), #a07a42);
-      color: var(--bg); border: none; border-radius: 8px;
-      font-size: .95rem; font-weight: 700; font-family: inherit;
-      cursor: pointer; transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .modal-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,169,110,.4); }
-    .modal-note { text-align: center; font-size: .75rem; color: var(--muted); margin-top: .8rem; }
+  .float-call{width:46px;height:46px;bottom:1.2rem;right:1.2rem;font-size:1.1rem}
+}
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      .about-inner, .contact-inner { grid-template-columns: 1fr; }
-      .about-visual { order: -1; max-width: 360px; margin: 0 auto; }
-      .nav-links { display: none; }
-    }
-    @media (max-width: 600px) {
-      .hero-stats { gap: 1.5rem; }
-      footer { flex-direction: column; text-align: center; }
-      .footer-links { justify-content: center; }
-    }
-  </style>
+/* ════════════════════════════════════════
+   RESPONSIVE — TINY ≤400px
+════════════════════════════════════════ */
+@media(max-width:400px){
+  .why-grid,.services-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}
+  .about-stats-row{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .lang-sw{display:none}
+}
+</style>
 </head>
 <body>
 
-<!-- ─── NAVBAR ─── -->
+<!-- ════════════════ NAVBAR ════════════════ -->
 <nav class="navbar">
-  <div class="nav-logo">
-    <div class="nav-logo-icon">D</div>
-    <div class="nav-logo-text">Dent<span>Aura</span> 24</div>
-  </div>
-  <ul class="nav-links">
-    <li><a href="#services" data-ka="სერვისები" data-en="Services">სერვისები</a></li>
-    <li><a href="#about"    data-ka="ჩვენ შესახებ" data-en="About Us">ჩვენ შესახებ</a></li>
-    <li><a href="#contact"  data-ka="კონტაქტი" data-en="Contact">კონტაქტი</a></li>
-  </ul>
-  <div class="nav-right">
-    <div class="lang-toggle">
-      <button class="lang-btn active" id="langKa" onclick="setLang('ka')">ქართ</button>
-      <button class="lang-btn"        id="langEn" onclick="setLang('en')">ENG</button>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 8c0 4 2 7 4 10 .6 1.3 1.3 2.8 3 2.8s2.4-1.5 3-2.8c2-3 4-6 4-10 0-3-3-6-7-6zm0 2c2.8 0 5 2.2 5 4 0 3.4-1.8 6.2-3.7 9.2-.4.7-.8 1.6-1.3 1.6s-.9-.9-1.3-1.6C8.8 14.2 7 11.4 7 8c0-1.8 2.2-4 5-4z"/></svg>
+      </div>
+      Toothix
     </div>
-    <button class="btn-book-sm" onclick="openModal()"
-      data-ka="ჩაწერა" data-en="Book Now">ჩაწერა</button>
+
+    <ul class="nav-links">
+      <li><a href="#hero"     data-ka="მთავარი"      data-en="Home">მთავარი</a></li>
+      <li><a href="#about"    data-ka="ჩვენ შესახებ"  data-en="About">ჩვენ შესახებ</a></li>
+      <li><a href="#services" data-ka="სერვისები"    data-en="Services">სერვისები</a></li>
+      <li><a href="#booking"  data-ka="ჩაწერა"       data-en="Booking">ჩაწერა</a></li>
+      <li><a href="#blog"     data-ka="ბლოგი"        data-en="Blog">ბლოგი</a></li>
+      <li><a href="#contact"  data-ka="კონტაქტი"     data-en="Contact">კონტაქტი</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="lang-sw">
+        <button class="on" id="btnKa" onclick="setLang('ka')">ქართ</button>
+        <button             id="btnEn" onclick="setLang('en')">ENG</button>
+      </div>
+      <button class="btn btn-primary nav-cta" onclick="openModal()" style="padding:.5rem 1.2rem">
+        <span data-ka="ვიზიტის ჩაწერა" data-en="Get Appointment">ვიზიტის ჩაწერა</span>
+      </button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
-<!-- ─── HERO ─── -->
+<!-- Mobile drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <nav>
+    <ul>
+      <li><a href="#hero"     onclick="closeMenu()" data-ka="მთავარი"      data-en="Home">მთავარი</a></li>
+      <li><a href="#about"    onclick="closeMenu()" data-ka="ჩვენ შესახებ"  data-en="About">ჩვენ შესახებ</a></li>
+      <li><a href="#services" onclick="closeMenu()" data-ka="სერვისები"    data-en="Services">სერვისები</a></li>
+      <li><a href="#booking"  onclick="closeMenu()" data-ka="ჩაწერა"       data-en="Booking">ჩაწერა</a></li>
+      <li><a href="#blog"     onclick="closeMenu()" data-ka="ბლოგი"        data-en="Blog">ბლოგი</a></li>
+      <li><a href="#contact"  onclick="closeMenu()" data-ka="კონტაქტი"     data-en="Contact">კონტაქტი</a></li>
+    </ul>
+  </nav>
+  <div class="mobile-menu-footer">
+    <div class="lang-sw">
+      <button class="on" id="btnKaMob" onclick="setLang('ka')">ქართ</button>
+      <button             id="btnEnMob" onclick="setLang('en')">ENG</button>
+    </div>
+    <button class="btn btn-primary" onclick="openModal();closeMenu()" style="flex:1;min-width:150px">
+      <span data-ka="ვიზიტის ჩაწერა" data-en="Get Appointment">ვიზიტის ჩაწერა</span>
+    </button>
+  </div>
+</div>
+
+<!-- ════════════════ HERO ════════════════ -->
 <section id="hero">
-  <div>
-    <div class="hero-badge">
-      <span class="badge-dot"></span>
-      <span data-ka="ღია 24/7 — ყოველ დღე, ნებისმიერ საათს" data-en="Open 24/7 — Every Day, Any Hour">ღია 24/7 — ყოველ დღე, ნებისმიერ საათს</span>
-    </div>
-    <h1 class="hero-title">
-      <span data-ka="თქვენი ღიმილი —" data-en="Your Smile —">თქვენი ღიმილი —</span>
-      <em data-ka="ჩვენი მისია" data-en="Our Mission">ჩვენი მისია</em>
-    </h1>
-    <p class="hero-sub" data-ka="DentAura 24 გთავაზობთ სტომატოლოგიურ მომსახურებას დღის ნებისმიერ საათს. კვალიფიციური ექიმები, მოდერნული აღჭურვილობა და სიახლოვე."
-                         data-en="DentAura 24 provides dental care at any hour of the day. Qualified doctors, modern equipment, and genuine care.">
-      DentAura 24 გთავაზობთ სტომატოლოგიურ მომსახურებას დღის ნებისმიერ საათს. კვალიფიციური ექიმები, მოდერნული აღჭურვილობა და სიახლოვე.
-    </p>
-    <div class="hero-cta">
-      <button class="btn-book-main" onclick="openModal()"
-        data-ka="📅  ვიზიტის ჩაწერა" data-en="📅  Book Appointment">📅 &nbsp;ვიზიტის ჩაწერა</button>
-      <button class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})"
-        data-ka="სერვისები →" data-en="Our Services →">სერვისები →</button>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">24<span style="font-size:.7em;color:var(--teal)">h</span></div>
-        <div class="stat-label" data-ka="ყოველდღე ღია" data-en="Open Every Day">ყოველდღე ღია</div>
+  <div class="hero-inner">
+    <div class="hero-text reveal">
+      <span class="tag" data-ka="🦷 თბილისის #1 სტომატოლოგიური ცენტრი" data-en="🦷 Tbilisi's #1 Dental Center">🦷 თბილისის #1 სტომატოლოგიური ცენტრი</span>
+      <h1 class="hero-title">
+        <span data-ka="კეთილი იყოს<br>თქვენი მობრძანება" data-en="Welcome To">კეთილი იყოს<br>თქვენი მობრძანება</span>
+        <span class="hl" data-ka=" Toothix-ში" data-en=" Toothix"> Toothix-ში</span>
+      </h1>
+      <p class="hero-desc"
+         data-ka="გთავაზობთ გულთბილ, ულტრამოდერნულ სტომატოლოგიურ მომსახურებას. ჩვენ ყოველ ვიზიტს სტრესისგან თავისუფლად ვქმნით."
+         data-en="Experience compassionate, state-of-the-art dental care. From routine check-ups to advanced cosmetic dentistry — every visit stress-free.">
+        გთავაზობთ გულთბილ, ულტრამოდერნულ სტომატოლოგიურ მომსახურებას. ჩვენ ყოველ ვიზიტს სტრესისგან თავისუფლად ვქმნით.
+      </p>
+      <div class="hero-btns">
+        <button class="btn btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+          <span data-ka="ჩვენი სერვისები" data-en="Our Services">ჩვენი სერვისები</span>
+        </button>
+        <div class="hero-play" title="ვიდეო">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-num">18+</div>
-        <div class="stat-label" data-ka="სპეციალისტი" data-en="Specialists">სპეციალისტი</div>
+    </div>
+
+    <div class="hero-img reveal" style="transition-delay:.2s">
+      <div class="hero-img-box">
+        <div style="text-align:center;padding:2.5rem">
+          <div style="font-size:clamp(4rem,8vw,7rem);line-height:1">😁</div>
+          <p style="color:var(--primary);font-weight:700;font-size:.95rem;margin-top:.8rem" data-ka="ბედნიერი პაციენტები" data-en="Happy Patients">ბედნიერი პაციენტები</p>
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-num">12k+</div>
-        <div class="stat-label" data-ka="კმაყოფილი პაციენტი" data-en="Happy Patients">კმაყოფილი პაციენტი</div>
+      <div class="hero-float-badge">
+        <div class="hfb-icon">🏆</div>
+        <div>
+          <div class="hfb-num">15+</div>
+          <div class="hfb-lbl" data-ka="წლის გამოცდილება" data-en="Years Experience">წლის გამოცდილება</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── TICKER ─── -->
-<div class="ticker">
-  <div class="ticker-track" id="tickerTrack">
-    <!-- Duplicated for seamless loop; filled by JS -->
-  </div>
-</div>
-
-<!-- ─── SERVICES ─── -->
-<section id="services">
-  <div class="services-header reveal">
-    <p class="section-label" data-ka="ჩვენი სერვისები" data-en="Our Services">ჩვენი სერვისები</p>
-    <h2 class="section-title" data-ka="სრული <strong>სტომატოლოგიური</strong> მოვლა" data-en="Complete <strong>Dental</strong> Care">სრული <strong>სტომატოლოგიური</strong> მოვლა</h2>
-    <p class="section-desc" data-ka="გთავაზობთ ფართო სპექტრს — პრევენციიდან კოსმეტიკური სტომატოლოგიამდე." data-en="We offer a wide spectrum — from prevention to cosmetic dentistry.">
-      გთავაზობთ ფართო სპექტრს — პრევენციიდან კოსმეტიკური სტომატოლოგიამდე.
+<!-- ════════════════ WHY CHOOSE ════════════════ -->
+<section id="why">
+  <div class="why-header reveal">
+    <span class="tag" data-ka="რატომ ჩვენ?" data-en="Why Choose Us?">რატომ ჩვენ?</span>
+    <h2 class="section-title" data-ka="რატომ <span>გვირჩევენ</span> ჩვენ?" data-en="Why <span>Choose</span> Us?">რატომ <span>გვირჩევენ</span> ჩვენ?</h2>
+    <p class="section-sub"
+       data-ka="მაღალკვალიფიციური სპეციალისტებისა და უახლესი ტექნოლოგიების გამოყენებით ვქმნით საუკეთესო გამოცდილებას."
+       data-en="With highly skilled professionals and the latest technology, we provide top-notch care in a welcoming environment.">
+      მაღალკვალიფიციური სპეციალისტებისა და უახლესი ტექნოლოგიების გამოყენებით ვქმნით საუკეთესო გამოცდილებას.
     </p>
+  </div>
+  <div class="why-grid" id="whyGrid"></div>
+</section>
+
+<!-- ════════════════ ABOUT ════════════════ -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-img-wrap reveal">
+      <div class="about-main-img">
+        <div style="text-align:center">
+          <div style="font-size:clamp(4rem,8vw,6rem)">👨‍⚕️</div>
+          <p style="color:var(--primary);font-weight:600;margin-top:.5rem" data-ka="ჩვენი გუნდი" data-en="Our Team">ჩვენი გუნდი</p>
+        </div>
+      </div>
+      <div class="about-stats-row">
+        <div class="about-stat"><div class="about-stat-num">15+</div><div class="about-stat-lbl" data-ka="წლის გამოცდილება" data-en="Years Exp.">წლის გამოცდილება</div></div>
+        <div class="about-stat"><div class="about-stat-num">4,500+</div><div class="about-stat-lbl" data-ka="კმაყოფილი პაციენტი" data-en="Patients">კმაყოფილი პაციენტი</div></div>
+        <div class="about-stat"><div class="about-stat-num">150+</div><div class="about-stat-lbl" data-ka="დაჯილდოება" data-en="Awards">დაჯილდოება</div></div>
+      </div>
+    </div>
+
+    <div class="about-content reveal" style="transition-delay:.15s">
+      <span class="tag" data-ka="ჩვენ შესახებ" data-en="About Us">ჩვენ შესახებ</span>
+      <h2 class="section-title" data-ka="თქვენი <span>სანდო</span> პარტნიორი სტომატოლოგიაში" data-en="Your <span>Trusted</span> Partner in Dental Care">თქვენი <span>სანდო</span> პარტნიორი სტომატოლოგიაში</h2>
+      <p data-ka="ჩვენ ვართ გამოცდილი სტომატოლოგიური ცენტრი, რომელიც მოიცავს ყველა სახის სტომატოლოგიურ მომსახურებას. ჩვენი ექიმები ინდივიდუალურ მიდგომას ახდენენ თითოეულ პაციენტთან."
+         data-en="We are an experienced dental center offering all types of dental services. Our doctors take an individual approach to each patient.">
+        ჩვენ ვართ გამოცდილი სტომატოლოგიური ცენტრი, რომელიც მოიცავს ყველა სახის სტომატოლოგიურ მომსახურებას.
+      </p>
+      <p data-ka="ჩვენი კლინიკა აღჭურვილია უახლესი ტექნოლოგიებით და ვიყენებთ მხოლოდ სერტიფიცირებულ მასალებს."
+         data-en="Our clinic is equipped with the latest technologies and we use only certified materials meeting international standards.">
+        ჩვენი კლინიკა აღჭურვილია უახლესი ტექნოლოგიებით და ვიყენებთ მხოლოდ სერტიფიცირებულ მასალებს.
+      </p>
+      <div class="about-two">
+        <div class="about-card-sm">
+          <h4>🎯 <span data-ka="ჩვენი მისია" data-en="Our Vision">ჩვენი მისია</span></h4>
+          <p data-ka="ყველა პაციენტისთვის ხარისხიანი, ხელმისაწვდომი სტომატოლოგიური მომსახურება." data-en="Quality and accessible dental care for every patient.">ყველა პაციენტისთვის ხარისხიანი, ხელმისაწვდომი სტომატოლოგიური მომსახურება.</p>
+        </div>
+        <div class="about-card-sm">
+          <h4>💎 <span data-ka="ვინ ვართ" data-en="Who We Are">ვინ ვართ</span></h4>
+          <p data-ka="სერტიფიცირებული სპეციალისტები, რომლებიც ზრუნავენ თქვენი ჯანმრთელობაზე." data-en="Certified specialists who genuinely care about your health.">სერტიფიცირებული სპეციალისტები, რომლებიც ზრუნავენ თქვენი ჯანმრთელობაზე.</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="margin-top:1.6rem" onclick="openModal()">
+        <span data-ka="ვიზიტის ჩაწერა →" data-en="Book Appointment →">ვიზიტის ჩაწერა →</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ BANNER CTA ════════════════ -->
+<section id="banner-cta">
+  <div class="banner-inner">
+    <div class="banner-text reveal">
+      <h2>
+        <span data-ka="ბრწყინვალე ღიმილი —" data-en="Bright Smiles —">ბრწყინვალე ღიმილი —</span>
+        <span data-ka="ჯანსაღი სიცოცხლე" data-en="Healthy Lives">ჯანსაღი სიცოცხლე</span>
+      </h2>
+      <p data-ka="ყოველ დღე, 24 საათი — ჩვენ თქვენთვის ვართ." data-en="Every day, 24 hours — we are here for you.">ყოველ დღე, 24 საათი — ჩვენ თქვენთვის ვართ.</p>
+    </div>
+    <button class="btn btn-white" onclick="openModal()">
+      <span data-ka="📅 ვიზიტის ჩაწერა" data-en="📅 Book an Appointment">📅 ვიზიტის ჩაწერა</span>
+    </button>
+    <div class="banner-emoji">🦷</div>
+  </div>
+</section>
+
+<!-- ════════════════ SERVICES ════════════════ -->
+<section id="services">
+  <div class="services-top">
+    <div>
+      <span class="tag" data-ka="ჩვენი სერვისები" data-en="Our Services">ჩვენი სერვისები</span>
+      <h2 class="section-title">
+        <span data-ka="რამ გვხდის " data-en="What Makes Us ">რამ გვხდის </span><span style="color:var(--primary)" data-ka="სპეციალურს" data-en="Special">სპეციალურს</span>
+      </h2>
+    </div>
+    <div><span class="tag" data-ka="ძირითადი სერვისები" data-en="Key Services">ძირითადი სერვისები</span></div>
   </div>
   <div class="services-grid" id="servicesGrid"></div>
 </section>
 
-<!-- ─── ABOUT ─── -->
-<section id="about">
-  <div class="about-inner">
-    <div class="about-visual reveal">
-      <div class="about-img-box">
-        <!-- Decorative SVG tooth illustration -->
-        <svg width="180" height="220" viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M90 10 C50 10 20 40 20 75 C20 110 30 135 45 155 C55 170 60 185 65 200 C68 210 75 215 82 215 C89 215 90 205 90 195 C90 205 91 215 98 215 C105 215 112 210 115 200 C120 185 125 170 135 155 C150 135 160 110 160 75 C160 40 130 10 90 10 Z" stroke="var(--gold)" stroke-width="2.5" fill="rgba(201,169,110,.04)"/>
-          <path d="M60 40 C60 40 55 65 70 80" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
-          <circle cx="75" cy="35" r="4" fill="var(--teal)" opacity=".3"/>
-          <circle cx="110" cy="30" r="3" fill="var(--gold)" opacity=".3"/>
-        </svg>
-        <div class="about-badge-float">
-          <div class="big">24</div>
-          <div class="sm" data-ka="საათი / 365 დღე" data-en="Hours / 365 Days">საათი / 365 დღე</div>
-        </div>
+<!-- ════════════════ BOOKING ════════════════ -->
+<section id="booking">
+  <div class="booking-inner">
+    <div class="booking-img reveal">
+      <div class="booking-img-emoji">🩺</div>
+      <div class="booking-img-overlay"></div>
+      <div class="booking-img-text">
+        <h3 data-ka="დღესვე ჩაინიშნეთ ვიზიტი" data-en="Schedule Your Visit Today">დღესვე ჩაინიშნეთ ვიზიტი</h3>
+        <p data-ka="ჩვენი ექიმები მზად არიან — ნებისმიერ დროს." data-en="Our expert team is ready to help you at any time.">ჩვენი ექიმები მზად არიან — ნებისმიერ დროს.</p>
+        <button class="btn btn-white" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+          <span data-ka="მეტი სერვისი →" data-en="See More Services →">მეტი სერვისი →</span>
+        </button>
       </div>
     </div>
 
-    <div class="about-content reveal">
-      <p class="section-label" data-ka="ჩვენ შესახებ" data-en="About Us">ჩვენ შესახებ</p>
-      <h2 class="section-title" data-ka="ვინ ვართ <strong>ჩვენ</strong>?" data-en="Who <strong>We Are</strong>?">ვინ ვართ <strong>ჩვენ</strong>?</h2>
-      <p data-ka="DentAura 24 დაარსდა 2012 წელს, პაციენტისთვის ხარვეზების გარეშე სტომატოლოგიური მომსახურების შეთავაზების იდეით. ჩვენ გვჯერა, რომ ჯანსაღი ღიმილი დროით არ უნდა შეიზღუდოს."
-              data-en="DentAura 24 was founded in 2012 with the idea of offering dental care without barriers. We believe a healthy smile should not be limited by time.">
-        DentAura 24 დაარსდა 2012 წელს, პაციენტისთვის ხარვეზების გარეშე სტომატოლოგიური მომსახურების შეთავაზების იდეით. ჩვენ გვჯერა, რომ ჯანსაღი ღიმილი დროით არ უნდა შეიზღუდოს.
-      </p>
-      <p data-ka="ჩვენს კლინიკაში მუშაობს 18-ზე მეტი სერტიფიცირებული სპეციალისტი. ყველა ეტაპი — დიაგნოსტიკიდან მკურნალობის დასრულებამდე — ხდება მხოლოდ ციფრული, მოდერნული ტექნოლოგიებით."
-              data-en="Our clinic employs 18+ certified specialists. Every stage — from diagnostics to treatment completion — uses only modern digital technologies.">
-        ჩვენს კლინიკაში მუშაობს 18-ზე მეტი სერტიფიცირებული სპეციალისტი. ყველა ეტაპი — დიაგნოსტიკიდან მკურნალობის დასრულებამდე — ხდება მხოლოდ ციფრული, მოდერნული ტექნოლოგიებით.
-      </p>
-      <div class="about-features" id="aboutFeatures"></div>
+    <div class="booking-form reveal" style="transition-delay:.15s">
+      <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.25rem,2.5vw,1.55rem);color:var(--dark);margin-bottom:.3rem" data-ka="ვიზიტის ჩაწერა" data-en="Book Appointment">ვიზიტის ჩაწერა</h3>
+      <p style="font-size:.83rem;color:var(--muted);margin-bottom:1.3rem" data-ka="შეავსეთ ფორმა — ჩვენ დაგიკავშირდებით." data-en="Fill the form and we will contact you.">შეავსეთ ფორმა — ჩვენ დაგიკავშირდებით.</p>
+      <div class="form-row">
+        <div class="form-group"><label><span>*</span> <span data-ka="სახელი" data-en="Full Name">სახელი</span></label><input type="text" class="form-control" placeholder="გ. მაისურაძე"/></div>
+        <div class="form-group"><label><span>*</span> <span data-ka="ელ-ფოსტა" data-en="Email">ელ-ფოსტა</span></label><input type="email" class="form-control" placeholder="user@mail.com"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label><span>*</span> <span data-ka="ტელეფონი" data-en="Phone">ტელეფონი</span></label><input type="tel" class="form-control" placeholder="+995 5xx xxx xxx"/></div>
+        <div class="form-group"><label><span>*</span> <span data-ka="თარიღი" data-en="Date">თარიღი</span></label><input type="date" class="form-control"/></div>
+      </div>
+      <div class="form-group">
+        <label data-ka="სერვისი" data-en="Service">სერვისი</label>
+        <select class="form-control">
+          <option data-ka="სერვისის არჩევა" data-en="Services Needed">სერვისის არჩევა</option>
+          <option data-ka="კბილების გაწმენდა" data-en="Teeth Cleaning">კბილების გაწმენდა</option>
+          <option data-ka="გათეთრება" data-en="Teeth Whitening">გათეთრება</option>
+          <option data-ka="ინვიზალაინი" data-en="Invisalign Braces">ინვიზალაინი</option>
+          <option data-ka="იმპლანტები" data-en="Dental Implants">იმპლანტები</option>
+          <option data-ka="გადაუდებელი დახმარება" data-en="Emergency Care">გადაუდებელი დახმარება</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-ka="შენიშვნა" data-en="Additional Notes">შენიშვნა</label>
+        <textarea class="form-control" rows="3" placeholder="..."></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="bookSubmit()" style="width:100%;justify-content:center;padding:.85rem">
+        <span data-ka="📅 ვიზიტის ჩაწერა" data-en="📅 Book Appointment">📅 ვიზიტის ჩაწერა</span>
+      </button>
+      <p style="text-align:center;font-size:.72rem;color:var(--muted);margin-top:.6rem" data-ka="* სადემო ფორმა" data-en="* Demo form">* სადემო ფორმა</p>
     </div>
   </div>
 </section>
 
-<!-- ─── CONTACT ─── -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="reveal">
-      <p class="section-label" data-ka="კონტაქტი" data-en="Contact">კონტაქტი</p>
-      <h2 class="section-title" data-ka="დაგვიკავშირდით <strong>ნებისმიერ დროს</strong>" data-en="Reach Us <strong>Anytime</strong>">დაგვიკავშირდით <strong>ნებისმიერ დროს</strong></h2>
-      <div class="contact-item">
-        <div class="contact-item-icon">📍</div>
-        <div>
-          <div class="contact-item-label" data-ka="მისამართი" data-en="Address">მისამართი</div>
-          <div class="contact-item-val" data-ka="თბილისი, რუსთაველის გამზ. 42" data-en="Tbilisi, Rustaveli Ave. 42">თბილისი, რუსთაველის გამზ. 42</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">📞</div>
-        <div>
-          <div class="contact-item-label" data-ka="სატელეფონო" data-en="Phone">სატელეფონო</div>
-          <div class="contact-item-val">+995 32 250 00 00</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">✉️</div>
-        <div>
-          <div class="contact-item-label" data-ka="ელ-ფოსტა" data-en="Email">ელ-ფოსტა</div>
-          <div class="contact-item-val">info@dentaura24.ge</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">🕐</div>
-        <div>
-          <div class="contact-item-label" data-ka="სამუშაო საათები" data-en="Working Hours">სამუშაო საათები</div>
-          <div class="contact-item-val" data-ka="24 / 7 / 365" data-en="24 / 7 / 365">24 / 7 / 365</div>
-        </div>
+<!-- ════════════════ TESTIMONIALS ════════════════ -->
+<section id="testimonials">
+  <div class="testimonials-inner">
+    <div class="test-left reveal">
+      <span class="tag" data-ka="პაციენტების აზრი" data-en="Patient Testimonials">პაციენტების აზრი</span>
+      <h2 class="section-title">
+        <span data-ka="რას ამბობენ" data-en="What Our">რას ამბობენ</span><br>
+        <span data-ka="ჩვენი პაციენტები" data-en="Patients Say">ჩვენი პაციენტები</span>
+      </h2>
+      <p class="section-sub" data-ka="მოუსმინეთ მათ, ვინც ჩვენს ღიმილს ენდობა." data-en="Hear from those who trust us with their smiles.">მოუსმინეთ მათ, ვინც ჩვენს ღიმილს ენდობა.</p>
+      <div class="test-dots">
+        <div class="test-dot on"></div><div class="test-dot"></div><div class="test-dot"></div>
       </div>
     </div>
-    <div class="contact-map reveal">
-      <span>🗺️</span>
-      <p data-ka="რუკა — მალე" data-en="Map — Coming Soon">რუკა — მალე</p>
-    </div>
+    <div class="test-grid" id="testGrid"></div>
   </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
-<footer>
-  <div class="footer-logo">Dent<span style="color:var(--teal)">Aura</span> 24 &nbsp;©&nbsp;<span id="year"></span></div>
-  <ul class="footer-links">
-    <li><a href="#" data-ka="კონფიდენციალობა" data-en="Privacy">კონფიდენციალობა</a></li>
-    <li><a href="#" data-ka="წესები" data-en="Terms">წესები</a></li>
-    <li><a href="#contact" data-ka="კონტაქტი" data-en="Contact">კონტაქტი</a></li>
-  </ul>
-  <div class="footer-copy" data-ka="© 2024 DentAura 24. ყველა უფლება დაცულია." data-en="© 2024 DentAura 24. All rights reserved.">© 2024 DentAura 24. ყველა უფლება დაცულია.</div>
+<!-- ════════════════ BLOG ════════════════ -->
+<section id="blog">
+  <div class="blog-header reveal">
+    <span class="tag" data-ka="ბლოგი" data-en="Blog">ბლოგი</span>
+    <h2 class="section-title" data-ka="სასარგებლო <span>სტატიები</span>" data-en="Insights For A <span>Healthier</span> Smile">სასარგებლო <span>სტატიები</span></h2>
+    <p class="section-sub" data-ka="წაიკითხეთ ჩვენი ექსპერტების რჩევები სტომატოლოგიის შესახებ." data-en="Read our experts' tips about dentistry.">წაიკითხეთ ჩვენი ექსპერტების რჩევები სტომატოლოგიის შესახებ.</p>
+  </div>
+  <div class="blog-grid" id="blogGrid"></div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo" style="color:#fff">
+        <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 8c0 4 2 7 4 10 .6 1.3 1.3 2.8 3 2.8s2.4-1.5 3-2.8c2-3 4-6 4-10 0-3-3-6-7-6zm0 2c2.8 0 5 2.2 5 4 0 3.4-1.8 6.2-3.7 9.2-.4.7-.8 1.6-1.3 1.6s-.9-.9-1.3-1.6C8.8 14.2 7 11.4 7 8c0-1.8 2.2-4 5-4z"/></svg></div>
+        Toothix
+      </div>
+      <p data-ka="სტომატოლოგიური კლინიკა, სადაც ყველა პაციენტი ოჯახის წევრივითაა." data-en="A dental clinic where every patient is treated like family.">სტომატოლოგიური კლინიკა, სადაც ყველა პაციენტი ოჯახის წევრივითაა.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-ka="სწრაფი ბმულები" data-en="Quick Links">სწრაფი ბმულები</h4>
+      <ul>
+        <li><a href="#hero"     data-ka="მთავარი"      data-en="Home">მთავარი</a></li>
+        <li><a href="#blog"     data-ka="ბლოგი"        data-en="Blog">ბლოგი</a></li>
+        <li><a href="#about"    data-ka="ჩვენ შესახებ"  data-en="About">ჩვენ შესახებ</a></li>
+        <li><a href="#services" data-ka="სერვისები"    data-en="Services">სერვისები</a></li>
+        <li><a href="#contact"  data-ka="კონტაქტი"     data-en="Contact Us">კონტაქტი</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-ka="სერვისები" data-en="Services">სერვისები</h4>
+      <ul>
+        <li><a href="#" data-ka="ორთოდონტია"                data-en="Orthodontics">ორთოდონტია</a></li>
+        <li><a href="#" data-ka="პრევენციული მოვლა"          data-en="Preventive Care">პრევენციული მოვლა</a></li>
+        <li><a href="#" data-ka="რესტავრაციული სტომატოლოგია" data-en="Restorative Dentistry">რესტავრაციული სტომ.</a></li>
+        <li><a href="#" data-ka="კოსმეტიკური მკურნალობა"     data-en="Cosmetic Treatments">კოსმეტიკური მკ.</a></li>
+        <li><a href="#" data-ka="გადაუდებელი მოვლა"          data-en="Emergency Dental Care">გადაუდებელი მოვლა</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-ka="დაგვიკავშირდით" data-en="Get In Touch">დაგვიკავშირდით</h4>
+      <div class="footer-contact-item">
+        <span class="icon">📍</span>
+        <p><strong data-ka="მისამართი" data-en="Address">მისამართი</strong><span data-ka="თბილისი, გ.ლეონიძის 404" data-en="404 Ocean Drive, Tbilisi">თბილისი, გ.ლეონიძის 404</span></p>
+      </div>
+      <div class="footer-contact-item">
+        <span class="icon">📞</span>
+        <p><strong data-ka="ტელეფონი" data-en="Phone">ტელეფონი</strong>+995 32 250 00 00</p>
+      </div>
+      <div class="footer-contact-item">
+        <span class="icon">✉️</span>
+        <p><strong data-ka="ელ-ფოსტა" data-en="Email">ელ-ფოსტა</strong>info@toothix.ge</p>
+      </div>
+      <div class="footer-contact-item">
+        <span class="icon">🕐</span>
+        <p><strong data-ka="სამუშ. საათები" data-en="Hours">სამუშ. საათები</strong><span data-ka="ყოველდღე: 9:00–20:00" data-en="Daily: 9 AM – 8 PM">ყოველდღე: 9:00–20:00</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© <span id="yr"></span> Toothix. <span data-ka="ყველა უფლება დაცულია." data-en="All Rights Reserved.">ყველა უფლება დაცულია.</span></p>
+    <div class="social-links">
+      <a class="social-link" href="#" aria-label="Facebook">f</a>
+      <a class="social-link" href="#" aria-label="LinkedIn">in</a>
+      <a class="social-link" href="#" aria-label="Twitter">tw</a>
+      <a class="social-link" href="#" aria-label="YouTube">yt</a>
+    </div>
+  </div>
 </footer>
 
-<!-- ─── FLOATING 24H PILL ─── -->
-<div class="float-24">
-  <span class="float-24-dot"></span>
-  <span data-ka="ღია 24 საათი" data-en="Open 24 Hours">ღია 24 საათი</span>
-</div>
+<!-- Floating call -->
+<div class="float-call" title="დაგვირეკეთ">📞</div>
 
-<!-- ─── BOOKING MODAL ─── -->
-<div class="modal-overlay" id="modalOverlay">
+<!-- ════════════════ MODAL ════════════════ -->
+<div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">×</button>
-    <h3 class="modal-title" data-ka="ვიზიტის ჩაწერა" data-en="Book Appointment">ვიზიტის ჩაწერა</h3>
-    <p class="modal-sub" data-ka="შეავსეთ ფორმა და ჩვენ დაგიკავშირდებით." data-en="Fill in the form and we will contact you.">შეავსეთ ფორმა და ჩვენ დაგიკავშირდებით.</p>
-    <div class="modal-field">
-      <label data-ka="სახელი და გვარი" data-en="Full Name">სახელი და გვარი</label>
-      <input type="text" placeholder="მაგ: გიორგი მაისურაძე" id="mName"/>
-    </div>
-    <div class="modal-field">
-      <label data-ka="ტელეფონი" data-en="Phone">ტელეფონი</label>
-      <input type="tel" placeholder="+995 5xx xxx xxx" id="mPhone"/>
-    </div>
-    <div class="modal-field">
+    <h3 data-ka="ვიზიტის ჩაწერა" data-en="Book Appointment">ვიზიტის ჩაწერა</h3>
+    <p class="sub" data-ka="შეავსეთ ფორმა — ჩვენ მალე დაგიკავშირდებით." data-en="Fill out the form — we'll contact you soon.">შეავსეთ ფორმა — ჩვენ მალე დაგიკავშირდებით.</p>
+    <div class="form-group"><label data-ka="სახელი" data-en="Full Name">სახელი</label><input type="text" class="form-control" placeholder="სახელი გვარი"/></div>
+    <div class="form-group"><label data-ka="ტელეფონი" data-en="Phone">ტელეფონი</label><input type="tel" class="form-control" placeholder="+995 5xx xxx xxx"/></div>
+    <div class="form-group">
       <label data-ka="სერვისი" data-en="Service">სერვისი</label>
-      <select id="mService">
-        <option data-ka="გენერალური სტომატოლოგია" data-en="General Dentistry">გენერალური სტომატოლოგია</option>
-        <option data-ka="კოსმეტიკური სტომატოლოგია" data-en="Cosmetic Dentistry">კოსმეტიკური სტომატოლოგია</option>
-        <option data-ka="გადაუდებელი დახმარება" data-en="Emergency Dental Care">გადაუდებელი დახმარება</option>
-        <option data-ka="ორთოდონტია" data-en="Orthodontics">ორთოდონტია</option>
-        <option data-ka="იმპლანტები" data-en="Dental Implants">იმპლანტები</option>
+      <select class="form-control">
+        <option data-ka="აირჩიეთ" data-en="Choose">აირჩიეთ</option>
+        <option data-ka="კბილების გაწმენდა" data-en="Teeth Cleaning">კბილების გაწმენდა</option>
+        <option data-ka="გათეთრება" data-en="Whitening">გათეთრება</option>
+        <option data-ka="იმპლანტები" data-en="Implants">იმპლანტები</option>
       </select>
     </div>
-    <button class="modal-submit" onclick="submitModal()"
-      data-ka="ვიზიტის დადასტურება" data-en="Confirm Appointment">ვიზიტის დადასტურება</button>
-    <p class="modal-note" data-ka="* ეს არის სადემო ღილაკი — ფორმა ფუნქციონალური არ არის." data-en="* This is a demo button — the form is not functional.">* ეს არის სადემო ღილაკი — ფორმა ფუნქციონალური არ არის.</p>
+    <button class="btn btn-primary" onclick="modalSubmit()">
+      <span data-ka="ვიზიტის დადასტურება" data-en="Confirm Appointment">ვიზიტის დადასტურება</span>
+    </button>
+    <p class="modal-note" data-ka="* სადემო ფორმა — ფუნქციონალური არ არის" data-en="* Demo form — not functional">* სადემო ფორმა — ფუნქციონალური არ არის</p>
   </div>
 </div>
 
 <script>
-/* ══════════════════════════════════════════
-   DATA
-══════════════════════════════════════════ */
-const SERVICES = [
-  { icon:'🦷', ka:'გენერალური სტომატოლოგია', en:'General Dentistry',      descKa:'ყველაფერი — ბაქტერიებიდან ბჟუტვამდე. ჩვენი ექიმები ზოგჯერ წელს ანახლებენ კბილებს.',      descEn:'Everything from routine checkups to fillings. Our doctors keep your teeth in peak condition.', tag:'teal', tagKa:'საბაზო', tagEn:'Essential' },
-  { icon:'✨', ka:'კოსმეტიკური სტომატოლოგია', en:'Cosmetic Dentistry',     descKa:'თეთრება, ვენირები, ღიმილის დიზაინი. სახე, რომელსაც ამაყად გამოაჩენ.',                     descEn:'Whitening, veneers, smile design. A face you are proud to show.',                            tag:'gold', tagKa:'პოპულარული', tagEn:'Popular' },
-  { icon:'🚨', ka:'გადაუდებელი დახმარება',   en:'Emergency Dental Care',   descKa:'ტკივილს არ ელოდება. ჩვენ ვართ 24 საათი — ნებისმიერ შემთხვევაზე.',                           descEn:'Pain does not wait. We are here 24 hours — ready for any emergency.',                         tag:'teal', tagKa:'24h', tagEn:'24h' },
-  { icon:'🔬', ka:'ორთოდონტია',              en:'Orthodontics',            descKa:'ბრეკეტები, ელაინერები, ბიო-ფუნქციონალური სისტემები. სწორი ღიმილი ყველა ასაკში.',           descEn:'Braces, aligners, bio-functional systems. A straight smile at every age.',                   tag:'gold', tagKa:'სპეც.', tagEn:'Specialist' },
-  { icon:'🦾', ka:'იმპლანტები',              en:'Dental Implants',         descKa:'ტიტანის ფესვი, ბუნებრივი შედეგი. გახდი ახალი — ერთი სვეტის ძალით.',                        descEn:'Titanium root, natural result. Become renewed with the power of one post.',                   tag:'teal', tagKa:'ულტრა-მოდ.', tagEn:'Ultra-Modern' },
-  { icon:'😴', ka:'სედაციური სტომატოლოგია', en:'Sedation Dentistry',       descKa:'ფობიის გარეშე. სრული მოვლა, სრული სიმშვიდე. თქვენ ტკივილს ვერც კი იგრძნობთ.',           descEn:'Without phobia. Full care, full calm. You will not feel a thing.',                            tag:'gold', tagKa:'კომფორტი', tagEn:'Comfort' },
+/* ════ DATA ════ */
+const WHY_D=[
+  {icon:'👨‍⚕️',ka:'გამოცდილი სპეციალისტები',en:'Experienced Specialists',dk:'სერტიფიცირებული ექიმები და თანამედროვე ტექნოლოგიები.',de:'Certified doctors and modern technologies.'},
+  {icon:'❤️', ka:'ინდივიდუალური მოვლა',    en:'Personalized Care',      dk:'ყოველი პაციენტი — ჩვენი პრიორიტეტია.',             de:'Every patient is our priority.'},
+  {icon:'🕐', ka:'24/7 სერვისი',            en:'24/7 Services',          dk:'ღია ვართ ნებისმიერ დროს.',                         de:'Open at any time — for emergencies.'},
+  {icon:'🔬', ka:'მოდერნული ტექნოლოგია',   en:'State-Of-The-Art',       dk:'ციფრული X-Ray, 3D სკანერი და ISO სტანდარტები.',     de:'Digital X-Ray, 3D scanner, ISO standards.'},
+];
+const SVC_D=[
+  {icon:'🦷',ka:'კბილების გაწმენდა',         en:'Teeth Cleaning',    dk:'პროფესიონალური გაწმენდა და ტარტარის მოცილება.',  de:'Professional cleaning and tartar removal.'},
+  {icon:'✨',ka:'კბილების გათეთრება',        en:'Teeth Whitening',   dk:'ულტრა-უსაფრთხო გათეთრების პროცედურა.',          de:'Ultra-safe whitening procedure.'},
+  {icon:'🦾',ka:'ინვიზალაინ ბრეკეტები',     en:'Invisalign Braces', dk:'გამჭვირვალე, კომფორტული გასწორება.',            de:'Transparent, comfortable alignment.'},
+  {icon:'💎',ka:'სტომ. იმპლანტები',         en:'Dental Implants',   dk:'ტიტანის ფესვი — ბუნებრივი ღიმილი.',             de:'Titanium root — natural smile.'},
+];
+const TEST_D=[
+  {init:'ს.ჯ',ka:'სარუჯა ჯ.',en:'Saruja J.',textKa:'სერვისი გამოჩენილი დონისაა. ექიმები გულისხმიერები არიან და ყველა პროცედურა ტკივილის გარეშეა.',textEn:'Outstanding service. Doctors are attentive and every procedure is painless.'},
+  {init:'მ.თ',ka:'მარიამ თ.',en:'Mark T.',  textKa:'კლინიკა ძალიან სუფთაა, ეკიპირება უახლესი. ყველა პაციენტს ინდივიდუალურ მიდგომას ახდენენ.',    textEn:'Very clean clinic, state-of-the-art equipment. Individual approach for every patient.'},
+  {init:'გ.ლ',ka:'გიორგი ლ.',en:'Smith L.',textKa:'15 წელია ამ კლინიკას ვენდობი. Toothix-ი ჩემი ოჯახის ნაწილია.',                                textEn:'I have trusted this clinic for 15 years. Toothix is part of my family.'},
+];
+const BLOG_D=[
+  {icon:'🦷',cat:'სტომატოლოგია',catEn:'Dentistry',date:'15 იანვ, 2024',dateEn:'Jan 15, 2024',titleKa:'ზეპირის ჰიგიენის მითები, რომლებსაც ნუ დაიჯერებ',       titleEn:'Myths About Oral Health You Need To Stop Believing'},
+  {icon:'💉',cat:'მეცნიერება',  catEn:'Science',  date:'3 თებ, 2024',  dateEn:'Feb 3, 2024',  titleKa:'იმპლანტი თუ პროთეზი — რომელია შენთვის სწორი?',         titleEn:'Dental Implants Vs. Dentures: Which Is Right For You?'},
+  {icon:'👶',cat:'ბავშვები',    catEn:'Children', date:'20 თებ, 2024', dateEn:'Feb 20, 2024', titleKa:'როგორ მოვამზადოთ ბავშვი სტომატოლოგთან სტუმრობისთვის', titleEn:'How To Help Your Child Overcome Fear Of The Dentist'},
 ];
 
-const FEATURES = [
-  { ka:'ახალი თაობის ციფრული X-Ray',           en:'New-generation digital X-Ray' },
-  { ka:'სასტერილიზაციო სისტემა ISO 9001',       en:'ISO 9001 sterilisation system' },
-  { ka:'მრავალენოვანი პერსონალი',              en:'Multilingual staff' },
-  { ka:'ბავშვთა სტომატოლოგია — კეთილი გარემო', en:'Pediatric dentistry — friendly environment' },
-];
-
-const TICKER_TEXTS = {
-  ka: ['DentAura 24 — ღია ყოველ დღე, 24 საათი','სტომატოლოგია გადაუდებელ სიტუაციებში','18+ სერტიფიცირებული სპეციალისტი','კბილების მკურნალობა ტკივილის გარეშე','ციფრული X-Ray — სრული სიზუსტე'],
-  en: ['DentAura 24 — Open Every Day, 24 Hours','Dentistry for Emergency Situations','18+ Certified Specialists','Painless Dental Treatment','Digital X-Ray — Full Precision'],
-};
-
-/* ══════════════════════════════════════════
-   LANGUAGE STATE
-══════════════════════════════════════════ */
-let currentLang = 'ka';
-
-function setLang(lang) {
-  currentLang = lang;
-  document.getElementById('langKa').classList.toggle('active', lang==='ka');
-  document.getElementById('langEn').classList.toggle('active', lang==='en');
-  document.querySelectorAll('[data-ka]').forEach(el => {
-    const val = lang === 'ka' ? el.dataset.ka : el.dataset.en;
-    if (val !== undefined) {
-      if (el.tagName === 'INPUT' || el.tagName === 'SELECT') { /* skip */ }
-      else el.innerHTML = val;
-    }
+/* ════ LANGUAGE ════ */
+let lang='ka';
+function setLang(l){
+  lang=l;
+  ['Ka','En'].forEach(x=>{
+    document.getElementById('btn'+x)?.classList.toggle('on',x.toLowerCase()===l);
+    document.getElementById('btn'+x+'Mob')?.classList.toggle('on',x.toLowerCase()===l);
   });
-  // Ticker
-  buildTicker(lang);
-  // Services grid
-  buildServices(lang);
-  // About features
-  buildFeatures(lang);
-  // Modal selects
-  document.querySelectorAll('#mService option').forEach((opt,i) => {
-    opt.textContent = lang === 'ka' ? opt.dataset.ka : opt.dataset.en;
-  });
+  document.querySelectorAll('[data-ka]').forEach(el=>{el.innerHTML=l==='ka'?el.dataset.ka:el.dataset.en;});
+  buildAll();
 }
 
-/* ══════════════════════════════════════════
-   BUILD COMPONENTS
-══════════════════════════════════════════ */
-function buildServices(lang) {
-  const grid = document.getElementById('servicesGrid');
-  grid.innerHTML = SERVICES.map(s => `
-    <div class="service-card reveal">
-      <div class="service-icon">${s.icon}</div>
-      <div class="service-name">${lang==='ka'?s.ka:s.en}</div>
-      <div class="service-desc">${lang==='ka'?s.descKa:s.descEn}</div>
-      <span class="service-tag ${s.tag}">${lang==='ka'?s.tagKa:s.tagEn}</span>
-    </div>
-  `).join('');
-  observeReveal();
+/* ════ BUILD ════ */
+const card=(cls,inner)=>`<div class="${cls} reveal">${inner}</div>`;
+function buildWhy(){
+  document.getElementById('whyGrid').innerHTML=WHY_D.map(w=>card('why-card',`
+    <div class="why-icon">${w.icon}</div>
+    <div class="why-name">${lang==='ka'?w.ka:w.en}</div>
+    <div class="why-desc">${lang==='ka'?w.dk:w.de}</div>`)).join('');
+}
+function buildSvc(){
+  document.getElementById('servicesGrid').innerHTML=SVC_D.map(s=>card('svc-card',`
+    <div class="svc-icon">${s.icon}</div>
+    <div class="svc-name">${lang==='ka'?s.ka:s.en}</div>
+    <div class="svc-desc">${lang==='ka'?s.dk:s.de}</div>
+    <a class="svc-link" href="#">${lang==='ka'?'დაწვრილებით':'Learn More'} →</a>`)).join('');
+}
+function buildTest(){
+  document.getElementById('testGrid').innerHTML=TEST_D.map(t=>card('test-card',`
+    <div class="test-quote">"</div>
+    <div class="stars">★★★★★</div>
+    <div class="test-text">${lang==='ka'?t.textKa:t.textEn}</div>
+    <div class="test-author">
+      <div class="test-avatar">${t.init}</div>
+      <div><div class="test-name">${lang==='ka'?t.ka:t.en}</div><div class="test-role">პაციენტი</div></div>
+    </div>`)).join('');
+}
+function buildBlog(){
+  document.getElementById('blogGrid').innerHTML=BLOG_D.map(b=>card('blog-card',`
+    <div class="blog-thumb">${b.icon}<span class="blog-cat">${lang==='ka'?b.cat:b.catEn}</span></div>
+    <div class="blog-body">
+      <div class="blog-date">${lang==='ka'?b.date:b.dateEn}</div>
+      <div class="blog-title">${lang==='ka'?b.titleKa:b.titleEn}</div>
+      <a class="blog-link" href="#">${lang==='ka'?'დაწვრილებით':'Read More'} →</a>
+    </div>`)).join('');
+}
+function buildAll(){buildWhy();buildSvc();buildTest();buildBlog();observe();}
+
+/* ════ SCROLL REVEAL ════ */
+function observe(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+  },{threshold:.08});
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>io.observe(el));
 }
 
-function buildFeatures(lang) {
-  const el = document.getElementById('aboutFeatures');
-  el.innerHTML = FEATURES.map(f => `
-    <div class="about-feat">
-      <div class="feat-dot">✓</div>
-      <div class="feat-text"><strong>${lang==='ka'?f.ka:f.en}</strong></div>
-    </div>
-  `).join('');
+/* ════ MOBILE MENU ════ */
+function toggleMenu(){
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
 }
+function closeMenu(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+window.addEventListener('scroll',()=>{if(document.getElementById('mobileMenu').classList.contains('open'))closeMenu();},{passive:true});
 
-function buildTicker(lang) {
-  const texts = TICKER_TEXTS[lang];
-  const doubled = [...texts, ...texts].map(t => `<span>✦ ${t}</span>`).join('');
-  document.getElementById('tickerTrack').innerHTML = doubled;
-}
+/* ════ MODAL ════ */
+function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 
-/* ══════════════════════════════════════════
-   SCROLL REVEAL
-══════════════════════════════════════════ */
-function observeReveal() {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+function showSuccess(){
+  const m=document.querySelector('#modal .modal');
+  m.innerHTML=`<div style="text-align:center;padding:2.5rem 1rem">
+    <div style="font-size:3.5rem">✅</div>
+    <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:1.7rem;color:var(--dark);margin:.8rem 0 .4rem">${lang==='ka'?'მადლობა!':'Thank You!'}</h3>
+    <p style="color:var(--muted);font-size:.88rem">${lang==='ka'?'ჩვენ მალე დაგიკავშირდებით.':'We will contact you shortly.'}</p>
+    <button class="btn btn-primary" style="margin-top:1.4rem" onclick="closeModal()">${lang==='ka'?'დახურვა':'Close'}</button>
+  </div>`;
+  setTimeout(()=>{closeModal();setTimeout(()=>location.reload(),300);},3500);
 }
+function modalSubmit(){showSuccess();}
+function bookSubmit(){openModal();setTimeout(showSuccess,80);}
 
-/* ══════════════════════════════════════════
-   MODAL
-══════════════════════════════════════════ */
-function openModal() {
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function submitModal() {
-  // Demo only — show a toast-like message
-  const modal = document.querySelector('.modal');
-  const orig = modal.innerHTML;
-  modal.innerHTML = `
-    <div style="text-align:center;padding:2rem 0">
-      <div style="font-size:3rem">✅</div>
-      <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.8rem;color:var(--white);margin:.8rem 0 .5rem">
-        ${currentLang==='ka'?'მადლობა!':'Thank you!'}
-      </h3>
-      <p style="color:var(--muted);font-size:.9rem">
-        ${currentLang==='ka'?'ეს სადემო კლინიკის ვებსაიტია. ვიზიტი ჩაწერილი არ არის.':'This is a demo clinic website. No appointment was recorded.'}
-      </p>
-      <button class="btn-book-sm" style="margin-top:1.5rem" onclick="closeModal()">
-        ${currentLang==='ka'?'დახურვა':'Close'}
-      </button>
-    </div>`;
-  setTimeout(() => { modal.innerHTML = orig; setLang(currentLang); }, 3500);
-}
-// Close on overlay click
-document.getElementById('modalOverlay').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
-
-/* ══════════════════════════════════════════
-   INIT
-══════════════════════════════════════════ */
-document.getElementById('year').textContent = new Date().getFullYear();
-buildServices('ka');
-buildFeatures('ka');
-buildTicker('ka');
-observeReveal();
+/* ════ INIT ════ */
+document.getElementById('yr').textContent=new Date().getFullYear();
+buildAll();
 </script>
 </body>
 </html>
